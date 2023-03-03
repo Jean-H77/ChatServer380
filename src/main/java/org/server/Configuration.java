@@ -44,6 +44,10 @@ public class Configuration {
         return configuration;
     }
 
+    public static Configuration load(String path) {
+        return builder().load(path);
+    }
+
     static Builder builder() {
         return new Builder();
     }
