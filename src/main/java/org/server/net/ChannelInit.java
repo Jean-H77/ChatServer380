@@ -14,10 +14,6 @@ public class ChannelInit extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel ch) {
         ChannelPipeline p = ch.pipeline();
 
-        if(Server.configuration.useSSL()) {
-            //@todo ssl configuration
-        }
-
         p.addLast(new PacketEncoder());
         p.addLast(new PacketDecoder());
         p.addLast(new ServerChannelHandler());

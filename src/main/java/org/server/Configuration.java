@@ -19,7 +19,6 @@ public class Configuration {
 
     // server variables
     private int port;
-    private boolean ssl;
 
     public String getJdbcUrl() {
         return jdbcUrl;
@@ -37,13 +36,8 @@ public class Configuration {
         return port;
     }
 
-    public boolean useSSL() {
-        return ssl;
-    }
-
     public static Configuration defaultValues() {
         Configuration configuration = new Configuration();
-        configuration.ssl = false;
         configuration.port = 85;
         return configuration;
     }
@@ -81,11 +75,6 @@ public class Configuration {
             }
 
             return null;
-        }
-
-        public Configuration setSSL(boolean SSL) {
-            configuration.ssl = SSL;
-            return configuration;
         }
 
         public Configuration setPort(int port) {
