@@ -1,4 +1,4 @@
-package org.server.database;
+package org.server.persistance;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.server.Server;

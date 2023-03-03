@@ -33,7 +33,7 @@ public class Configuration {
         return port;
     }
 
-    public boolean getSsl() {
+    public boolean useSSL() {
         return ssl;
     }
 

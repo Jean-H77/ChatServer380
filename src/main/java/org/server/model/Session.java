@@ -1,4 +1,4 @@
-package org.server.entity;
+package org.server.model;
 
 import io.netty.channel.Channel;
 
