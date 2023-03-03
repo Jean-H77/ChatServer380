@@ -1,0 +1,8 @@
+# database configuration
+jdbcUrl: okay
+username: root
+Password: password
+
+# server configuration
+port: 85
+SSL: true
