@@ -1,5 +1,11 @@
 package org.server;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+
+import java.io.File;
+import java.util.Objects;
+
 public class Configuration {
 
     // database variables
@@ -9,7 +15,7 @@ public class Configuration {
 
     // server variables
     private int port;
-    private boolean SSL;
+    private boolean ssl;
 
     public String getJdbcUrl() {
         return jdbcUrl;
@@ -27,24 +33,51 @@ public class Configuration {
         return port;
     }
 
-    public boolean isSSL() {
-        return SSL;
+    public boolean getSsl() {
+        return ssl;
+    }
+
+    public static Configuration defaultValues() {
+        Configuration configuration = new Configuration();
+        configuration.ssl = false;
+        configuration.port = 85;
+        return configuration;
+    }
+
+    static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder {
 
-        private final Configuration configuration;
+        private Configuration configuration;
 
         public Builder(Configuration configuration) {
             this.configuration = configuration;
         }
 
+        public Builder() {
+
+        }
+
         public Configuration load(String path) {
-            return null;
+            File file = new File(Objects.requireNonNull(Thread.currentThread().getContextClassLoader()
+                    .getResource(path)).getFile());
+
+            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+            Configuration config = Configuration.defaultValues();
+
+            try {
+                config = mapper.readValue(file, Configuration.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return config;
         }
 
         public Configuration setSSL(boolean SSL) {
-            configuration.SSL = SSL;
+            configuration.ssl = SSL;
             return configuration;
         }
 
