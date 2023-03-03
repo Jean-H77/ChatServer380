@@ -36,65 +36,17 @@ public class Configuration {
         return port;
     }
 
-    public static Configuration defaultValues() {
-        Configuration configuration = new Configuration();
-        configuration.port = 85;
-        return configuration;
-    }
-
     public static Configuration load(String path) {
-        return builder().load(path);
-    }
+        File file = new File(Objects.requireNonNull(Thread.currentThread().getContextClassLoader()
+                .getResource(path)).getFile());
 
-    static Builder builder() {
-        return new Builder();
-    }
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 
-    public static class Builder {
-
-        private Configuration configuration;
-
-        public Builder(Configuration configuration) {
-            this.configuration = configuration;
+        try {
+            return mapper.readValue(file, Configuration.class);
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Unable to load configuration file with path of " + path, e);
         }
-
-        public Builder() {
-
-        }
-
-        public Configuration load(String path) {
-            File file = new File(Objects.requireNonNull(Thread.currentThread().getContextClassLoader()
-                    .getResource(path)).getFile());
-
-            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-
-            try {
-                return mapper.readValue(file, Configuration.class);
-            } catch (Exception e) {
-                LOGGER.log(Level.SEVERE, "Unable to load configuration file with path of " + path, e);
-            }
-
-            return null;
-        }
-
-        public Configuration setPort(int port) {
-            configuration.port = port;
-            return configuration;
-        }
-
-        public Configuration setPassword(String password) {
-            configuration.password = password;
-            return configuration;
-        }
-
-        public Configuration setUsername(String username) {
-            configuration.username = username;
-            return configuration;
-        }
-
-        public Configuration setJdbcUrl(String jdbcUrl) {
-            configuration.jdbcUrl = jdbcUrl;
-            return configuration;
-        }
+        return null;
     }
 }
