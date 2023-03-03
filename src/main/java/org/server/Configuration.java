@@ -5,8 +5,12 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.io.File;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Configuration {
+
+    private static final Logger LOGGER = Logger.getLogger(Configuration.class.getName());
 
     // database variables
     private String jdbcUrl;
@@ -69,15 +73,14 @@ public class Configuration {
                     .getResource(path)).getFile());
 
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-            Configuration config = Configuration.defaultValues();
 
             try {
-                config = mapper.readValue(file, Configuration.class);
+                return mapper.readValue(file, Configuration.class);
             } catch (Exception e) {
-                e.printStackTrace();
+                LOGGER.log(Level.SEVERE, "Unable to load configuration file with path of " + path, e);
             }
 
-            return config;
+            return null;
         }
 
         public Configuration setSSL(boolean SSL) {
