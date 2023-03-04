@@ -7,7 +7,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
 import org.server.net.packet.Packet;
 
 @ChannelHandler.Sharable
-public class PacketEncoder extends MessageToByteEncoder<Packet> {
+public final class PacketEncoder extends MessageToByteEncoder<Packet> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Packet packet, ByteBuf out) {

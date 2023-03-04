@@ -1,14 +1,12 @@
-package org.server.net.packet.encoders.impl;
+package org.server.net.packet.encoders;
 
-import org.server.net.packet.encoders.OutgoingPacket;
-
-public class SendMessage extends OutgoingPacket {
+public final class DirectMessageEncoder extends OutgoingPacket {
 
     private static final int OPCODE = 10;
 
     private final String message;
 
-    public SendMessage(String message) {
+    public DirectMessageEncoder(String message) {
         super(OPCODE);
         this.message = message;
     }

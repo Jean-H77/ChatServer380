@@ -9,7 +9,7 @@ import org.server.net.packet.Packet;
 import java.util.List;
 
 @ChannelHandler.Sharable
-public class PacketDecoder extends ByteToMessageDecoder {
+public final class PacketDecoder extends ByteToMessageDecoder {
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
         int opcode = in.readUnsignedByte();

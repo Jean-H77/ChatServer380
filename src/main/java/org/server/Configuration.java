@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Configuration {
+public final class Configuration {
 
     private static final Logger LOGGER = Logger.getLogger(Configuration.class.getName());
 

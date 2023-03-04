@@ -6,7 +6,7 @@ import org.server.ServerLauncher;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class Datasource {
+public final class Datasource {
 
     public static final HikariDataSource ds = new HikariDataSource();
 
