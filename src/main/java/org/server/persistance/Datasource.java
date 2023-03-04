@@ -1,7 +1,7 @@
 package org.server.persistance;
 
 import com.zaxxer.hikari.HikariDataSource;
-import org.server.Server;
+import org.server.ServerLauncher;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,9 +11,10 @@ public class Datasource {
     public static final HikariDataSource ds = new HikariDataSource();
 
     static  {
-        ds.setJdbcUrl(Server.configuration.getJdbcUrl());
-        ds.setUsername(Server.configuration.getUsername());
-        ds.setPassword(Server.configuration.getPassword());
+        assert ServerLauncher.configuration != null;
+        ds.setJdbcUrl(ServerLauncher.configuration.getJdbcUrl());
+        ds.setUsername(ServerLauncher.configuration.getUsername());
+        ds.setPassword(ServerLauncher.configuration.getPassword());
         ds.addDataSourceProperty("cachePrepStmts", "true");
         ds.addDataSourceProperty("prepStmtCacheSize", "250");
         ds.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");

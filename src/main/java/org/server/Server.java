@@ -6,20 +6,21 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.server.model.User;
 import org.server.net.ChannelInit;
+
+import java.util.*;
 
 public class Server {
 
-    public static final String CONFIGURATION_PATH = "configuration.yaml";
+    public final Configuration configuration;
+    public final Set<User> connectedUsers = new HashSet<>();
 
-    public static Configuration configuration;
+    public Server(Configuration configuration) {
+        this.configuration = configuration;
+    }
 
-    public static void main(String[] args) throws Exception {
-
-        // load configuration
-        loadConfiguration();
-
-        // set up netty server
+    public void run() throws InterruptedException {
         EventLoopGroup boss = new NioEventLoopGroup();
         EventLoopGroup worker = new NioEventLoopGroup();
 
@@ -39,7 +40,18 @@ public class Server {
         }
     }
 
-    private static void loadConfiguration() {
-        configuration = Configuration.load(Server.CONFIGURATION_PATH);
+    public Optional<User> getUserByName(String name) {
+        return connectedUsers
+                .stream()
+                .filter(user -> user.getUsername().equalsIgnoreCase(name))
+                .findFirst();
+    }
+
+    public void addNewUser(User user) {
+        connectedUsers.add(user);
+    }
+
+    public boolean removeUser(User user) {
+        return connectedUsers.remove(user);
     }
 }
