@@ -1,10 +1,9 @@
 package org.server.net.packet;
 
 import io.netty.buffer.ByteBuf;
+import org.server.ServerConstants;
 
-public class PacketBuilder {
-
-    private static final int STRING_TERMINATOR = 0;
+public final class PacketBuilder {
 
     /**
      * Opcode of the packet
@@ -20,12 +19,16 @@ public class PacketBuilder {
         this.opcode = opcode;
     }
 
+    /**
+     * Converts the opcode and the payload to a packet for use
+     * @return The created Packet
+     */
     public Packet toPacket() {
         return new Packet(opcode, payload);
     }
 
     public PacketBuilder writeString(String string) {
-        payload.writeBytes(string.getBytes()).writeByte(STRING_TERMINATOR);
+        payload.writeBytes(string.getBytes()).writeByte(ServerConstants.STRING_TERMINATOR);
         return this;
     }
 

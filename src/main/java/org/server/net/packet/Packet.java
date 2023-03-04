@@ -1,13 +1,12 @@
 package org.server.net.packet;
 
 import io.netty.buffer.ByteBuf;
+import org.server.ServerConstants;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public record Packet(int opcode, ByteBuf payload) {
-
-    private static final int STRING_TERMINATOR = 0;
 
     public short readUByte() {
         return payload.readUnsignedByte();
@@ -21,7 +20,7 @@ public record Packet(int opcode, ByteBuf payload) {
         byte[] bytes = new byte[payload.readableBytes()];
         byte b;
         int i = 0;
-        while((b = payload.readByte()) != STRING_TERMINATOR) {
+        while((b = payload.readByte()) != ServerConstants.STRING_TERMINATOR) {
             bytes[i] = b;
             i++;
         }

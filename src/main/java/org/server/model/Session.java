@@ -17,6 +17,6 @@ public record Session(Channel channel) {
 
     public void readPacket(Packet packet) {
         int opcode = packet.opcode();
-        PacketConstants.INCOMING_PACKET_DECODERS.get(opcode).handleMessage(packet);
+        PacketConstants.PACKET_DECODERS.get(opcode).handleMessage(packet);
     }
 }
