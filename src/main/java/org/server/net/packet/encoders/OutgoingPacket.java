@@ -14,6 +14,7 @@ public abstract sealed class OutgoingPacket permits DirectMessageEncoder {
     protected abstract void encode();
 
     public void send(Session session) {
+        encode();
         session.channel().write(builder.toPacket());
     }
 }
