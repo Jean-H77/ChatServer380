@@ -14,7 +14,7 @@ import java.util.*;
 public class Server {
 
     public final Configuration configuration;
-    public final Set<User> connectedUsers = new HashSet<>();
+    private final Set<User> connectedUsers = new HashSet<>();
 
     public Server(Configuration configuration) {
         this.configuration = configuration;

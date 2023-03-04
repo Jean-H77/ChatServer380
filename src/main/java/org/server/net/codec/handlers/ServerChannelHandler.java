@@ -1,8 +1,8 @@
 package org.server.net.codec.handlers;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.server.ServerLauncher;
 import org.server.model.User;
 import org.server.net.packet.Packet;
 
@@ -18,7 +18,8 @@ public class ServerChannelHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         //handle removing user from server here
-
+        ServerLauncher.server.removeUser(user);
+        ctx.close();
     }
 
     @Override
@@ -33,8 +34,7 @@ public class ServerChannelHandler extends ChannelInboundHandlerAdapter {
             return;
         }
 
-        ByteBuf byteBuf = (ByteBuf) msg;
-        ctx.writeAndFlush(byteBuf);
+        ctx.writeAndFlush(msg);
     }
 
     @Override

@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cb2b725-6e95-4a31-967b-7e1deafe613c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/OutgoingPacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/impl/SendMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/Session.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,8 +42,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -99,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1677820128158</updated>
       <workItem from="1677820129225" duration="4657000" />
-      <workItem from="1677901892984" duration="1308000" />
+      <workItem from="1677901892984" duration="3341000" />
     </task>
     <servers />
   </component>
