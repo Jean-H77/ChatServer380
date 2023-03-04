@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cb2b725-6e95-4a31-967b-7e1deafe613c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/decoders/LoginDecoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/encoders/LoginEncoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/IncomingPacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/Packet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/PacketBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/handlers/ButtonClickHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/ChannelInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/ChannelInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/codec/decoders/PacketDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/decoders/PacketDecoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/codec/encoders/PacketEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/encoders/PacketEncoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/codec/handlers/ServerChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/handlers/ServerChannelHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +47,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -58,7 +73,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "settings.editor.selected.configurable": "configurable.group.tools",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -76,5 +91,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

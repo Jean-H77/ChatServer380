@@ -4,7 +4,9 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import org.server.Server;
+import org.server.net.codec.decoders.LoginDecoder;
 import org.server.net.codec.decoders.PacketDecoder;
+import org.server.net.codec.encoders.LoginEncoder;
 import org.server.net.codec.encoders.PacketEncoder;
 import org.server.net.codec.handlers.ServerChannelHandler;
 
@@ -14,8 +16,8 @@ public class ChannelInit extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel ch) {
         ChannelPipeline p = ch.pipeline();
 
-        p.addLast(new PacketEncoder());
-        p.addLast(new PacketDecoder());
+        p.addLast(new LoginEncoder());
+        p.addLast(new LoginDecoder());
         p.addLast(new ServerChannelHandler());
     }
 }
