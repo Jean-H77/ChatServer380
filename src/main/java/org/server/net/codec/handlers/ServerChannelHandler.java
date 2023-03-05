@@ -30,7 +30,7 @@ public class ServerChannelHandler extends ChannelInboundHandlerAdapter {
         }
 
         if(msg instanceof Packet) {
-            user.getSession().readPacket((Packet) msg);
+            user.getSession().read((Packet) msg);
             return;
         }
 

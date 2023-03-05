@@ -54,4 +54,11 @@ public class Server {
     public boolean removeUser(User user) {
         return connectedUsers.remove(user);
     }
+
+    public List<User> getUserListByGroupChatId(long id) {
+        return connectedUsers
+                .stream()
+                .filter(user -> user.getGroupChatIds().contains(id))
+                .toList();
+    }
 }

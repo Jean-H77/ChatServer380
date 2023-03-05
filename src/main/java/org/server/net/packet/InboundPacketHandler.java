@@ -1,5 +1,5 @@
 package org.server.net.packet;
 
-public interface IncomingPacketHandler {
+public interface InboundPacketHandler {
     void handleMessage(Packet packet);
 }

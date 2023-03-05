@@ -2,11 +2,11 @@ package org.server.net.packet;
 
 import org.server.model.Session;
 
-public abstract class AbstractOutgoingPacket {
+public abstract class AbstractOutboundPacket {
 
     protected final PacketBuilder builder;
 
-    protected AbstractOutgoingPacket(int opcode) {
+    protected AbstractOutboundPacket(int opcode) {
         this.builder = new PacketBuilder(opcode);
     }
 
