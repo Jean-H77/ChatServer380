@@ -1,7 +1,6 @@
-package org.server.net.packet.encoders;
+package org.server.net.packet;
 
 import org.server.model.Session;
-import org.server.net.packet.PacketBuilder;
 
 public abstract class AbstractOutgoingPacket {
 

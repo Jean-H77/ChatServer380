@@ -2,7 +2,7 @@ package org.server.model;
 
 import io.netty.channel.Channel;
 import org.server.net.packet.PacketConstants;
-import org.server.net.packet.encoders.AbstractOutgoingPacket;
+import org.server.net.packet.AbstractOutgoingPacket;
 import org.server.net.packet.Packet;
 
 /**
