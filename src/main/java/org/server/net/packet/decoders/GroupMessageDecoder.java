@@ -23,8 +23,9 @@ public final class GroupMessageDecoder implements InboundPacketHandler {
             return;
         }
 
-        // save message to database here
-
+        Thread.startVirtualThread(() -> {
+           // save message to database
+        });
 
         // send message to all users with groupId
         List<User> users = server.getUserListByGroupChatId(groupId);
