@@ -51,4 +51,9 @@ public final class PacketBuilder {
         payload.writeShort(value);
         return this;
     }
+
+    public PacketBuilder writeBytes(byte[] bytes) {
+        payload.writeBytes(bytes);
+        return this;
+    }
 }

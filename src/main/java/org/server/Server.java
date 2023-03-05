@@ -61,4 +61,11 @@ public class Server {
                 .filter(user -> user.getGroupChatIds().contains(id))
                 .toList();
     }
+
+    public Optional<User> getUserByUuid(long id) {
+        return connectedUsers
+                .stream()
+                .filter(user -> user.getUuid() == id)
+                .findFirst();
+    }
 }

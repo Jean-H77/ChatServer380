@@ -8,12 +8,15 @@ public class User {
     private final Session session;
     private final String username;
     private final String password;
+    private final long uuid;
+    private byte[] profilePictureData;
     private final Set<Long> groupChatIds = new HashSet<>();
 
-    public User(Session session, String username, String password) {
+    public User(Session session, String username, String password, long uuid) {
         this.session = session;
         this.username = username;
         this.password = password;
+        this.uuid = uuid;
     }
 
     public Session getSession() {
@@ -30,5 +33,17 @@ public class User {
 
     public Set<Long> getGroupChatIds() {
         return groupChatIds;
+    }
+
+    public long getUuid() {
+        return uuid;
+    }
+
+    public byte[] getProfilePictureData() {
+        return profilePictureData;
+    }
+
+    public void setProfilePictureData(byte[] profilePictureData) {
+        this.profilePictureData = profilePictureData;
     }
 }
