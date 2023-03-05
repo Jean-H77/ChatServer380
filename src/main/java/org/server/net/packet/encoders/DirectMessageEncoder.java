@@ -1,6 +1,6 @@
 package org.server.net.packet.encoders;
 
-public final class DirectMessageEncoder extends OutgoingPacket {
+public final class DirectMessageEncoder extends AbstractOutgoingPacket {
 
     private static final int OPCODE = 10;
 

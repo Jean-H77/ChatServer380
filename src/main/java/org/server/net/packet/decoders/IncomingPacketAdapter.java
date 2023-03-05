@@ -2,6 +2,6 @@ package org.server.net.packet.decoders;
 
 import org.server.net.packet.Packet;
 
-public sealed interface IncomingPacket permits ButtonClickDecoder, DirectMessageDecoder, GroupMessageDecoder {
+public interface IncomingPacketAdapter {
     void handleMessage(Packet packet);
 }

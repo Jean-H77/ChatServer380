@@ -3,13 +3,13 @@ package org.server.net.packet;
 import org.server.net.packet.decoders.ButtonClickDecoder;
 import org.server.net.packet.decoders.DirectMessageDecoder;
 import org.server.net.packet.decoders.GroupMessageDecoder;
-import org.server.net.packet.decoders.IncomingPacket;
+import org.server.net.packet.decoders.IncomingPacketAdapter;
 
 import java.util.HashMap;
 
 public final class PacketConstants {
 
-    public static final HashMap<Integer, IncomingPacket> PACKET_DECODERS = new HashMap<>();
+    public static final HashMap<Integer, IncomingPacketAdapter> PACKET_DECODERS = new HashMap<>();
 
     private static final int BUTTON_CLICK_OPCODE = 1;
     private static final int DIRECT_MESSAGE_OPCODE = 2;

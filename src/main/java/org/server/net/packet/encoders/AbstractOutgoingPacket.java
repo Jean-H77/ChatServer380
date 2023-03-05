@@ -3,11 +3,11 @@ package org.server.net.packet.encoders;
 import org.server.model.Session;
 import org.server.net.packet.PacketBuilder;
 
-public abstract sealed class OutgoingPacket permits DirectMessageEncoder {
+public abstract class AbstractOutgoingPacket {
 
     protected final PacketBuilder builder;
 
-    protected OutgoingPacket(int opcode) {
+    protected AbstractOutgoingPacket(int opcode) {
         this.builder = new PacketBuilder(opcode);
     }
 

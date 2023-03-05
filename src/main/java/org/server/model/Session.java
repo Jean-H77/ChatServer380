@@ -2,7 +2,7 @@ package org.server.model;
 
 import io.netty.channel.Channel;
 import org.server.net.packet.PacketConstants;
-import org.server.net.packet.encoders.OutgoingPacket;
+import org.server.net.packet.encoders.AbstractOutgoingPacket;
 import org.server.net.packet.Packet;
 
 /**
@@ -11,7 +11,7 @@ import org.server.net.packet.Packet;
  */
 public record Session(Channel channel) {
 
-    public void send(OutgoingPacket packet) {
+    public void send(AbstractOutgoingPacket packet) {
         packet.send(this);
     }
 
