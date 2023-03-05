@@ -37,7 +37,6 @@ public final class GroupMessageDecoder implements InboundPacketHandler {
            // save message to database
         });
 
-
         // send message to all users with groupId
         List<User> users = server.getUserListByGroupChatId(groupId);
         for(User user : users) {

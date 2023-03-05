@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9cb2b725-6e95-4a31-967b-7e1deafe613c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/PacketBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/PacketBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/GroupMessageDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/GroupMessageDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/GroupMessageEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/GroupMessageEncoder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +103,7 @@
       <workItem from="1677968664638" duration="1982000" />
       <workItem from="1677972718088" duration="1127000" />
       <workItem from="1677977499192" duration="2153000" />
-      <workItem from="1677985407451" duration="2648000" />
+      <workItem from="1677985407451" duration="3345000" />
     </task>
     <servers />
   </component>
