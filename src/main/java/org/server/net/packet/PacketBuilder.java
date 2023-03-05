@@ -1,6 +1,7 @@
 package org.server.net.packet;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import org.server.ServerConstants;
 
 public final class PacketBuilder {
@@ -17,6 +18,7 @@ public final class PacketBuilder {
 
     public PacketBuilder(int opcode) {
         this.opcode = opcode;
+        payload = Unpooled.buffer();
     }
 
     /**
@@ -55,5 +57,13 @@ public final class PacketBuilder {
     public PacketBuilder writeBytes(byte[] bytes) {
         payload.writeBytes(bytes);
         return this;
+    }
+
+    public int getOpcode() {
+        return opcode;
+    }
+
+    public ByteBuf getPayload() {
+        return payload;
     }
 }

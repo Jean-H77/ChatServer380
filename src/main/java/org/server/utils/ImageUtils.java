@@ -16,6 +16,15 @@ public final class ImageUtils {
         return null;
     }
 
+    /* try {
+            File imageFile = new File(Objects.requireNonNull(Thread.currentThread().getContextClassLoader()
+                    .getResource("image.png")).getFile());
+            bytes = Files.readAllBytes(imageFile.toPath());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
     private ImageUtils() {
 
     }

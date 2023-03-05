@@ -14,6 +14,7 @@ public abstract class AbstractOutboundPacket {
 
     public void send(Session session) {
         encode();
-        session.channel().write(builder.toPacket());
+        session.getChannel().write(builder.toPacket());
+        builder.getPayload().release();
     }
 }

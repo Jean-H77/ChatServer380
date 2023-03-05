@@ -8,7 +8,6 @@ import org.server.net.packet.Packet;
 
 import java.util.List;
 
-@ChannelHandler.Sharable
 public final class PacketDecoder extends ByteToMessageDecoder {
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
@@ -16,5 +15,4 @@ public final class PacketDecoder extends ByteToMessageDecoder {
         ByteBuf payload = in.readBytes(in.readableBytes());
         out.add(new Packet(opcode, payload));
     }
-
 }

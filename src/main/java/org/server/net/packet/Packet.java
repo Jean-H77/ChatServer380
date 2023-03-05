@@ -54,4 +54,8 @@ public record Packet(int opcode, ByteBuf payload) {
     public long readUInt() {
         return payload.readUnsignedInt();
     }
+
+    public byte[] readBytes(int length) {
+        return payload.readBytes(length).array();
+    }
 }

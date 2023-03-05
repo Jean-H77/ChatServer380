@@ -9,7 +9,7 @@ public class User {
     private final String username;
     private final String password;
     private final long uuid;
-    private byte[] profilePictureData;
+    private ProfileImage profileImage;
     private final Set<Long> groupChatIds = new HashSet<>();
 
     public User(Session session, String username, String password, long uuid) {
@@ -39,11 +39,11 @@ public class User {
         return uuid;
     }
 
-    public byte[] getProfilePictureData() {
-        return profilePictureData;
+    public ProfileImage getProfileImage() {
+        return profileImage;
     }
 
-    public void setProfilePictureData(byte[] profilePictureData) {
-        this.profilePictureData = profilePictureData;
+    public void setProfileImage(ProfileImage profileImage) {
+        this.profileImage = profileImage;
     }
 }

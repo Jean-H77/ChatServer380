@@ -1,44 +1,41 @@
 package org.server.net.codec.handlers;
 
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
-import org.server.ServerLauncher;
-import org.server.model.User;
+import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.util.AttributeKey;
+import io.netty.util.ReferenceCountUtil;
+import org.server.model.Session;
 import org.server.net.packet.Packet;
 
-public class ServerChannelHandler extends ChannelInboundHandlerAdapter {
+import java.io.IOException;
 
-    private User user;
-
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-
-    }
+public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
 
     @Override
-    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-        //handle removing user from server here
-        ServerLauncher.server.removeUser(user);
-        ctx.close();
-    }
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+        Session session = (Session)ctx.channel().attr(AttributeKey.valueOf("session.key")).get();
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        if(msg instanceof User) {
-            user = (User) msg;
+        if(session == null) {
             return;
         }
 
         if(msg instanceof Packet) {
-            user.getSession().read((Packet) msg);
-            return;
+            session.read((Packet) msg);
         }
 
-        ctx.writeAndFlush(msg);
+        ReferenceCountUtil.release(msg);
     }
 
+
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        super.exceptionCaught(ctx, cause);
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable t) {
+        if (!(t instanceof IOException)) {
+            t.printStackTrace();
+        }
+        try {
+            ctx.channel().close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -9,7 +9,14 @@ import org.server.net.packet.PacketConstants;
  * @// TODO: 3/2/2023 documentation
  * @param channel
  */
-public record Session(Channel channel) {
+public class Session{
+
+    private final Channel channel;
+    private User user;
+
+    public Session(Channel channel) {
+        this.channel = channel;
+    }
 
     public void send(AbstractOutboundPacket packet) {
         packet.send(this);
@@ -17,6 +24,19 @@ public record Session(Channel channel) {
 
     public void read(Packet packet) {
         int opcode = packet.opcode();
-        PacketConstants.PACKET_DECODERS.get(opcode).handleMessage(packet);
+        PacketConstants.PACKET_DECODERS.get(opcode).handleMessage(user, packet);
+        packet.payload().release();
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

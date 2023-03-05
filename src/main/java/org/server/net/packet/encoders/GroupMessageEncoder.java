@@ -1,5 +1,6 @@
 package org.server.net.packet.encoders;
 
+import org.server.model.ProfileImage;
 import org.server.net.packet.AbstractOutboundPacket;
 
 public class GroupMessageEncoder extends AbstractOutboundPacket {
@@ -7,14 +8,14 @@ public class GroupMessageEncoder extends AbstractOutboundPacket {
     private final String message;
     private final String senderName;
     private final long groupId;
-    private final byte[] profilePictureData;
+    private final ProfileImage profileImage;
 
-    public GroupMessageEncoder(String message, String senderName, long groupId, byte[] profilePictureData) {
+    public GroupMessageEncoder(String message, String senderName, long groupId, ProfileImage profileImage) {
         super(11);
         this.message = message;
         this.senderName = senderName;
         this.groupId = groupId;
-        this.profilePictureData = profilePictureData;
+        this.profileImage = profileImage;
     }
 
     @Override
@@ -22,6 +23,7 @@ public class GroupMessageEncoder extends AbstractOutboundPacket {
         builder.writeString(message);
         builder.writeString(senderName);
         builder.writeLong(groupId);
-        builder.writeBytes(profilePictureData);
+        builder.writeShort(profileImage.size());
+        builder.writeBytes(profileImage.data());
     }
 }
