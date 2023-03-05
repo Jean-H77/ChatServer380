@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cb2b725-6e95-4a31-967b-7e1deafe613c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/utils/MessageUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/codec/handlers/ServerChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/handlers/ServerChannelHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/AbstractOutgoingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/AbstractOutboundPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/IncomingPacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/InboundPacketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/PacketConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/PacketConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/ButtonClickDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/ButtonClickDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/DirectMessageDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/DirectMessageDecoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/GroupMessageDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/GroupMessageDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/DirectMessageEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/DirectMessageEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/GroupMessageEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/GroupMessageEncoder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +74,7 @@
     <configuration name="ServerLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.server.ServerLauncher" />
       <module name="Server380.main" />
+      <option name="VM_PARAMETERS" value="--enable-preview" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.server.*" />
@@ -114,7 +104,7 @@
       <workItem from="1677968664638" duration="1982000" />
       <workItem from="1677972718088" duration="1127000" />
       <workItem from="1677977499192" duration="2153000" />
-      <workItem from="1677985407451" duration="643000" />
+      <workItem from="1677985407451" duration="1556000" />
     </task>
     <servers />
   </component>

@@ -12,7 +12,7 @@ import java.util.List;
 
 public final class GroupMessageDecoder implements InboundPacketHandler {
 
-    private final Server server = ServerLauncher.server;
+    private static final Server server = ServerLauncher.server;
 
     @Override
     public void handleMessage(Packet packet) {
