@@ -8,13 +8,20 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.server.model.User;
 import org.server.net.ChannelInit;
+import org.server.service.LoginService;
+import org.server.service.RegistrationService;
 
 import java.util.*;
 
 public class Server {
 
+    public static Server INSTANCE;
+
     public final Configuration configuration;
     private final Set<User> connectedUsers = new HashSet<>();
+
+    public static final LoginService loginService = new LoginService();
+    public static final RegistrationService registrationService = new RegistrationService();
 
     public Server(Configuration configuration) {
         this.configuration = configuration;

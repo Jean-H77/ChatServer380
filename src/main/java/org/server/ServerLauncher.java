@@ -6,13 +6,13 @@ public final class ServerLauncher {
 
     public static final Configuration configuration = Configuration.load(CONFIGURATION_PATH);
 
-    public final static Server server = new Server(configuration);
-
     public static void main(String[] args) throws InterruptedException {
         launch();
     }
 
     public static void launch() throws InterruptedException {
+        Server server = new Server(configuration);
         server.run();
+        Server.INSTANCE = server;
     }
 }

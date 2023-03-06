@@ -1,5 +1,6 @@
 package org.server.net.packet.decoders;
 
+import org.server.Server;
 import org.server.model.User;
 import org.server.net.packet.InboundPacketHandler;
 import org.server.net.packet.Packet;
@@ -23,7 +24,7 @@ public final class GroupMessageDecoder implements InboundPacketHandler {
            // save message to database
         });
 
-        List<User> users = server.getUserListByGroupChatId(groupId);
+        List<User> users = Server.INSTANCE.getUserListByGroupChatId(groupId);
         for(User u : users) {
             u.getSession().send(new GroupMessageEncoder(message, user.getUsername(), groupId, user.getProfileImage()));
         }

@@ -7,7 +7,6 @@ import org.server.net.packet.PacketConstants;
 
 /**
  * @// TODO: 3/2/2023 documentation
- * @param channel
  */
 public class Session{
 

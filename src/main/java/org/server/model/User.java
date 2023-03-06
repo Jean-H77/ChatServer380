@@ -7,15 +7,15 @@ public class User {
 
     private final Session session;
     private final String username;
-    private final String password;
+    private final UserDetails userDetails;
     private final long uuid;
     private ProfileImage profileImage;
     private final Set<Long> groupChatIds = new HashSet<>();
 
-    public User(Session session, String username, String password, long uuid) {
+    public User(Session session, String username, UserDetails userDetails, long uuid) {
         this.session = session;
         this.username = username;
-        this.password = password;
+        this.userDetails = userDetails;
         this.uuid = uuid;
     }
 
@@ -27,8 +27,8 @@ public class User {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public UserDetails getUserDetails() {
+        return userDetails;
     }
 
     public Set<Long> getGroupChatIds() {

@@ -22,6 +22,8 @@ dependencies {
     implementation("com.google.guava:guava:31.1-jre")
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2")
+    // https://mvnrepository.com/artifact/commons-codec/commons-codec
+    implementation("commons-codec:commons-codec:1.15")
 }
 
 tasks.getByName<Test>("test") {

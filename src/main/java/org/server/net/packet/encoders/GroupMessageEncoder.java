@@ -23,7 +23,7 @@ public class GroupMessageEncoder extends AbstractOutboundPacket {
         builder.writeString(message);
         builder.writeString(senderName);
         builder.writeLong(groupId);
-        builder.writeShort(profileImage.size());
+        builder.writeShort(profileImage.length());
         builder.writeBytes(profileImage.data());
     }
 }
