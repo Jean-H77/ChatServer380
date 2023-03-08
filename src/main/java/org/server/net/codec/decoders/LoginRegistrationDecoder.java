@@ -31,12 +31,13 @@ public final class LoginRegistrationDecoder extends ByteToMessageDecoder {
 
     public void decodeRegistration(ByteBuf in, List<Object> out) {
         String email = getString(in);
-        String password = getString(in);
         String username = getString(in);
+        String password = getString(in);
         String DOB = getString(in);
         int profileImageLength = in.readShort();
-        byte[] bytes = in.readBytes(in.readableBytes()).array();
-        out.add(new RegisterRequest(new RegistrationDetails(email, password, username, new ProfileImage(bytes, profileImageLength), DOB)));
+        byte[] imageData = new byte[profileImageLength];
+        in.readBytes(imageData);
+        out.add(new RegisterRequest(new RegistrationDetails(email, password, username, new ProfileImage(imageData, profileImageLength), DOB)));
     }
 
     public void decodeLogin(ByteBuf in, List<Object> out) {
@@ -45,6 +46,7 @@ public final class LoginRegistrationDecoder extends ByteToMessageDecoder {
         out.add(new LoginRequest(new UserDetails(email, password)));
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static String getString(ByteBuf payload) {
         byte[] bytes = new byte[payload.readableBytes()];
         byte b;

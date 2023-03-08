@@ -16,6 +16,7 @@ public record Packet(int opcode, ByteBuf payload) {
         return payload.readByte();
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public String readString() {
         byte[] bytes = new byte[payload.readableBytes()];
         byte b;

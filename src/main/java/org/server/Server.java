@@ -20,8 +20,8 @@ public class Server {
     public final Configuration configuration;
     private final Set<User> connectedUsers = new HashSet<>();
 
-    public static final LoginService loginService = new LoginService();
-    public static final RegistrationService registrationService = new RegistrationService();
+    public final LoginService loginService = new LoginService();
+    public final RegistrationService registrationService = new RegistrationService();
 
     public Server(Configuration configuration) {
         this.configuration = configuration;
