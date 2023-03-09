@@ -46,7 +46,7 @@ public class RegistrationService {
         // check valid email
         if(!EmailValidator.getInstance().isValid(email)) {
             invalidCodes.add(INVALID_EMAIL_CODE);
-            // then check database if username exists
+            // then check database if email exists
         }
 
         // check valid username
