@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class RegistrationService {
-
+    private static final int INVALID_OPCODE = 10;
     private static final int INVALID_EMAIL_CODE = 1;
     private static final int INVALID_USERNAME_LENGTH_CODE = 2;
     private static final int INVALID_PASSWORD_CODE = 3;
@@ -36,11 +36,10 @@ public class RegistrationService {
         String DOB = rr.getRegistrationDetails().dateOfBirth();
         Date date = null;
         try {
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(rr.getRegistrationDetails().dateOfBirth());
+            date = new SimpleDateFormat("dd/MM/yyyy").parse(DOB);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         List<Integer> invalidCodes = new ArrayList<>();
 
@@ -88,7 +87,7 @@ public class RegistrationService {
         if(invalidCodes.size() > 0) {
             ByteBuffer buffer = ByteBuffer.allocate(invalidCodes.size() + 1); //+1 for opcode
 
-            buffer.put((byte) 10); // 10 for the packet opcode
+            buffer.put((byte) INVALID_OPCODE); // 10 for the packet opcode
             for(Integer code : invalidCodes) {
                 buffer.put(code.byteValue());
             }
@@ -102,6 +101,6 @@ public class RegistrationService {
     }
 
     private void completeRegistration(RegisterRequest rr) {
-        
+
     }
 }
