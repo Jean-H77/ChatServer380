@@ -26,10 +26,10 @@ public class ServerChannelHandler extends ChannelInboundHandlerAdapter {
             session.read((Packet) msg);
         } else if(msg instanceof LoginRequest loginRequest) {
             loginRequest.setChannel(ctx.channel());
-            Server.INSTANCE.loginService.addLoginRequest(loginRequest);
+            Server.getInstance().loginService.addLoginRequest(loginRequest);
         } else if(msg instanceof RegisterRequest registerRequest) {
             registerRequest.setChannel(ctx.channel());
-            Server.INSTANCE.registrationService.validateRegistration(registerRequest);
+            Server.getInstance().registrationService.validateRegistration(registerRequest);
         }
 
         ReferenceCountUtil.release(msg);

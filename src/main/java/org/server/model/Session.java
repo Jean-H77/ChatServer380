@@ -1,14 +1,14 @@
 package org.server.model;
 
 import io.netty.channel.Channel;
-import org.server.net.packet.AbstractOutboundPacket;
+import org.server.net.packet.OutboundPacket;
 import org.server.net.packet.Packet;
 import org.server.net.packet.PacketConstants;
 
 /**
  * @// TODO: 3/2/2023 documentation
  */
-public class Session{
+public class Session {
 
     private final Channel channel;
     private User user;
@@ -17,7 +17,7 @@ public class Session{
         this.channel = channel;
     }
 
-    public void send(AbstractOutboundPacket packet) {
+    public void send(OutboundPacket packet) {
         packet.send(this);
     }
 

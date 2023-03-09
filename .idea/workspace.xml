@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="9cb2b725-6e95-4a31-967b-7e1deafe613c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/AbstractOutboundPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/OutboundPacket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/DirectMessageEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/DirectMessageEncoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/GroupMessageEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/GroupMessageEncoder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/service/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/service/RegistrationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +120,8 @@
       <workItem from="1678257285005" duration="1227000" />
       <workItem from="1678259067692" duration="2225000" />
       <workItem from="1678298333439" duration="1305000" />
-      <workItem from="1678335126085" duration="4480000" />
+      <workItem from="1678335126085" duration="4782000" />
+      <workItem from="1678340560618" duration="855000" />
     </task>
     <servers />
   </component>

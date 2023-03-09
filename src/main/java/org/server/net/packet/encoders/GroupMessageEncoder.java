@@ -1,9 +1,9 @@
 package org.server.net.packet.encoders;
 
 import org.server.model.ProfileImage;
-import org.server.net.packet.AbstractOutboundPacket;
+import org.server.net.packet.OutboundPacket;
 
-public class GroupMessageEncoder extends AbstractOutboundPacket {
+public class GroupMessageEncoder extends OutboundPacket {
 
     private final String message;
     private final String senderName;

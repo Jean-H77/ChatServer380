@@ -24,7 +24,7 @@ public final class GroupMessageDecoder implements InboundPacketHandler {
            // save message to database
         });
 
-        List<User> users = Server.INSTANCE.getUserListByGroupChatId(groupId);
+        List<User> users = Server.getInstance().getUserListByGroupChatId(groupId);
         for(User u : users) {
             u.getSession().send(new GroupMessageEncoder(message, user.getUsername(), groupId, user.getProfileImage()));
         }

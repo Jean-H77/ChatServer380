@@ -12,7 +12,6 @@ public final class ServerLauncher {
 
     public static void launch() throws InterruptedException {
         Server server = new Server(configuration);
-        Server.INSTANCE = server;
         server.run();
     }
 }

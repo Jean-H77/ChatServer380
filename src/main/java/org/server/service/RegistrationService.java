@@ -1,6 +1,5 @@
 package org.server.service;
 
-import io.netty.channel.Channel;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.server.model.ProfileImage;
 import org.server.model.request.RegisterRequest;
@@ -46,8 +45,12 @@ public class RegistrationService {
         // check valid email
         if(!EmailValidator.getInstance().isValid(email)) {
             invalidCodes.add(INVALID_EMAIL_CODE);
-            // then check database if email exists
         }
+
+        /**
+         * @// TODO: 3/8/2023
+         * if(email exists in database)
+         */
 
         // check valid username
         if(!(username.length() > 5 && username.length() < 15)) {

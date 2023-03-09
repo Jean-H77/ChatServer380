@@ -15,7 +15,7 @@ import java.util.*;
 
 public class Server {
 
-    public static Server INSTANCE;
+    private static Server INSTANCE;
 
     public final Configuration configuration;
     private final Set<User> connectedUsers = new HashSet<>();
@@ -25,8 +25,9 @@ public class Server {
 
     public Server(Configuration configuration) {
         this.configuration = configuration;
+        INSTANCE = this;
     }
-
+    
     public void run() throws InterruptedException {
         EventLoopGroup boss = new NioEventLoopGroup();
         EventLoopGroup worker = new NioEventLoopGroup();
@@ -74,5 +75,9 @@ public class Server {
                 .stream()
                 .filter(user -> user.getUuid() == id)
                 .findFirst();
+    }
+
+    public static Server getInstance() {
+        return INSTANCE;
     }
 }
