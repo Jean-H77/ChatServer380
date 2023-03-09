@@ -24,6 +24,8 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2")
     // https://mvnrepository.com/artifact/commons-codec/commons-codec
     implementation("commons-codec:commons-codec:1.15")
+    // https://mvnrepository.com/artifact/commons-validator/commons-validator
+    implementation("commons-validator:commons-validator:1.6")
 }
 
 tasks.getByName<Test>("test") {

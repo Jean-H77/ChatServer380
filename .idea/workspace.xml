@@ -6,13 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="9cb2b725-6e95-4a31-967b-7e1deafe613c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/request/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/request/RegisterRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/codec/decoders/LoginRegistrationDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/decoders/LoginRegistrationDecoder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/codec/handlers/ServerChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/handlers/ServerChannelHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/InboundPacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/InboundPacketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/Packet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/PacketConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/PacketConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/GroupMessageDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/GroupMessageDecoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/service/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/service/RegistrationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +119,8 @@
       <workItem from="1678170588451" duration="958000" />
       <workItem from="1678257285005" duration="1227000" />
       <workItem from="1678259067692" duration="2225000" />
+      <workItem from="1678298333439" duration="1305000" />
+      <workItem from="1678335126085" duration="3752000" />
     </task>
     <servers />
   </component>

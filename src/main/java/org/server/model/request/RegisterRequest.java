@@ -14,4 +14,12 @@ public class RegisterRequest  {
     public void setChannel(Channel channel) {
         this.channel = channel;
     }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public RegistrationDetails getRegistrationDetails() {
+        return registrationDetails;
+    }
 }

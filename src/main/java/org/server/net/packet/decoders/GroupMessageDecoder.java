@@ -13,8 +13,8 @@ public final class GroupMessageDecoder implements InboundPacketHandler {
 
     @Override
     public void handleMessage(User user, Packet packet) {
-        long groupId = packet.readLong();
         String message = packet.readString();
+        long groupId = 5; // get users current groupId
 
         if(MessageUtils.containsProfanity(message)) {
             return;

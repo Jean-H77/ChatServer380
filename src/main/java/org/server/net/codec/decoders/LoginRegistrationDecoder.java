@@ -34,9 +34,18 @@ public final class LoginRegistrationDecoder extends ByteToMessageDecoder {
         String username = getString(in);
         String password = getString(in);
         String DOB = getString(in);
-        int profileImageLength = in.readShort();
+        short profileImageLength = in.readShort();
         byte[] imageData = new byte[profileImageLength];
         in.readBytes(imageData);
+
+        System.out.println("Received registration data = {\nemail: " + email
+                        + "\nusername: " + username
+                + "\npassword: " + password
+                + "\nDOB: " + DOB
+                + "\nProfileImageLength: " + profileImageLength
+                + "\n ProfileImageData: " + imageData
+        );
+
         out.add(new RegisterRequest(new RegistrationDetails(email, password, username, new ProfileImage(imageData, profileImageLength), DOB)));
     }
 
