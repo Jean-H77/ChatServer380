@@ -1,7 +1,6 @@
 package org.server.service;
 
 import org.apache.commons.validator.routines.EmailValidator;
-import org.server.model.ProfileImage;
 import org.server.model.request.RegisterRequest;
 
 import javax.imageio.ImageIO;
@@ -26,16 +25,17 @@ public class RegistrationService {
 
     private static final Pattern upperCasePatten = Pattern.compile("[A-Z ]");
     private static final Pattern digitCasePatten = Pattern.compile("[0-9 ]");
+    private static final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
 
     public void validateRegistration(RegisterRequest rr) {
         String email = rr.getRegistrationDetails().email();
         String password = rr.getRegistrationDetails().password();
         String username = rr.getRegistrationDetails().username();
-        ProfileImage profileImage = rr.getRegistrationDetails().profileImage();
         String DOB = rr.getRegistrationDetails().dateOfBirth();
         Date date = null;
+
         try {
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(DOB);
+            date = dateFormatter.parse(DOB);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,19 +71,6 @@ public class RegistrationService {
             if (!inputDate.isBefore(now.minusYears(12))) {
                 invalidCodes.add(INVALID_DATE_CODE);
             }
-        }
-
-        // check valid profile picture
-        byte[] imageData = profileImage.data();
-        try {
-            BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imageData));
-
-            // check if image has a max of 128x128 dimensions
-            if((bufferedImage.getHeight() > 128 || bufferedImage.getWidth() > 128)) {
-                invalidCodes.add(INVALID_PROFILE_IMAGE_CODE);
-            }
-        } catch (Exception e) {
-            invalidCodes.add(INVALID_PROFILE_IMAGE_CODE);
         }
 
         // send invalid responses to client

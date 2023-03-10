@@ -4,10 +4,9 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import org.server.ServerConstants;
-import org.server.model.ProfileImage;
 import org.server.model.RegistrationDetails;
-import org.server.model.request.LoginRequest;
 import org.server.model.UserDetails;
+import org.server.model.request.LoginRequest;
 import org.server.model.request.RegisterRequest;
 
 import java.nio.charset.StandardCharsets;
@@ -34,19 +33,17 @@ public final class LoginRegistrationDecoder extends ByteToMessageDecoder {
         String username = getString(in);
         String password = getString(in);
         String DOB = getString(in);
-        short profileImageLength = in.readShort();
-        byte[] imageData = new byte[profileImageLength];
-        in.readBytes(imageData);
+        String image = getString(in);
 
-        System.out.println("Received registration data = {\nemail: " + email
-                        + "\nusername: " + username
+        System.out.println(
+                "Received registration data = {\nemail: " + email
+                + "\nusername: " + username
                 + "\npassword: " + password
                 + "\nDOB: " + DOB
-                + "\nProfileImageLength: " + profileImageLength
-                + "\n ProfileImageData: " + imageData
+                + "\nimage: " + image
         );
 
-        out.add(new RegisterRequest(new RegistrationDetails(email, password, username, new ProfileImage(imageData, profileImageLength), DOB)));
+        out.add(new RegisterRequest(new RegistrationDetails(email, password, username, image, DOB)));
     }
 
     public void decodeLogin(ByteBuf in, List<Object> out) {

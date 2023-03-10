@@ -38,7 +38,10 @@ public class Server {
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new ChannelInit())
                     .option(ChannelOption.SO_BACKLOG, 128)
-                    .childOption(ChannelOption.SO_KEEPALIVE, true);
+                    .childOption(ChannelOption.SO_KEEPALIVE, true)
+                    .childOption(ChannelOption.TCP_NODELAY, true)
+                    .childOption(ChannelOption.SO_RCVBUF, Short.MAX_VALUE*2)
+                    .childOption(ChannelOption.SO_SNDBUF, Short.MAX_VALUE*2);
 
             ChannelFuture future = bootstrap.bind(configuration.getPort()).sync();
             future.channel().closeFuture().sync();

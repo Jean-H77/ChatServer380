@@ -4,7 +4,7 @@ public record RegistrationDetails(
         String email,
         String password,
         String username,
-        ProfileImage profileImage,
+        String profileImage,
         String dateOfBirth
 ) {
 }

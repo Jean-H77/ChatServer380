@@ -19,8 +19,9 @@ public class LoginService {
 
         String username = "temp"; // grab from database
         long uuid = 5;// grab from database
+        String image = ""; // grab from database
 
-        User user = new User(new Session(channel), username, userDetails, uuid);
+        User user = new User(new Session(channel), username, image, userDetails, uuid);
         finalizeLogin(user, channel);
     }
 

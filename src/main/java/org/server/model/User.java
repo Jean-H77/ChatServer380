@@ -7,14 +7,15 @@ public class User {
 
     private final Session session;
     private final String username;
+    private String profileImage;
     private final UserDetails userDetails;
     private final long uuid;
-    private ProfileImage profileImage;
     private final Set<Long> groupChatIds = new HashSet<>();
 
-    public User(Session session, String username, UserDetails userDetails, long uuid) {
+    public User(Session session, String username, String profileImage, UserDetails userDetails, long uuid) {
         this.session = session;
         this.username = username;
+        this.profileImage = profileImage;
         this.userDetails = userDetails;
         this.uuid = uuid;
     }
@@ -39,11 +40,11 @@ public class User {
         return uuid;
     }
 
-    public ProfileImage getProfileImage() {
+    public String getProfileImage() {
         return profileImage;
     }
 
-    public void setProfileImage(ProfileImage profileImage) {
+    public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
     }
 }
