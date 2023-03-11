@@ -6,16 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9cb2b725-6e95-4a31-967b-7e1deafe613c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/ProfileImage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/RegistrationDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/RegistrationDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/codec/decoders/LoginRegistrationDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/decoders/LoginRegistrationDecoder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/codec/encoders/LoginRegistrationEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/encoders/LoginRegistrationEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/PacketConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/PacketConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/ProfileImageDecoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/GroupMessageEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/GroupMessageEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/service/LoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/service/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/service/RegistrationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +122,8 @@
       <workItem from="1678411023600" duration="2992000" />
       <workItem from="1678420203030" duration="599000" />
       <workItem from="1678421170007" duration="1645000" />
-      <workItem from="1678425090353" duration="1940000" />
+      <workItem from="1678425090353" duration="2112000" />
+      <workItem from="1678497948406" duration="3909000" />
     </task>
     <servers />
   </component>

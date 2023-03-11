@@ -11,11 +11,6 @@ public final class LoginRegistrationEncoder extends MessageToByteEncoder<Object>
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Object msg, ByteBuf out) {
-       /* if(msg instanceof User) {
-            ctx.pipeline().replace("LoginRegistrationE", "PacketE", new PacketEncoder());
-            ctx.pipeline().replace("LoginRegistrationD", "PacketD", new PacketDecoder());
-            System.out.println("Inside encoder");
-            Server.INSTANCE.addNewUser((User) msg);
-        }*/
+        ctx.writeAndFlush(msg);
     }
 }
