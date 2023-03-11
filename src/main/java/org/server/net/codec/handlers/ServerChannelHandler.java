@@ -29,7 +29,7 @@ public class ServerChannelHandler extends ChannelInboundHandlerAdapter {
             Server.getInstance().loginService.addLoginRequest(loginRequest);
         } else if(msg instanceof RegisterRequest registerRequest) {
             registerRequest.setChannel(ctx.channel());
-            Server.getInstance().registrationService.validateRegistration(registerRequest);
+            Server.getInstance().registrationService.addRequest(registerRequest);
         }
 
         ReferenceCountUtil.release(msg);

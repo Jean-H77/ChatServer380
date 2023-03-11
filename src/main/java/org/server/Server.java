@@ -25,6 +25,7 @@ public class Server {
 
     public Server(Configuration configuration) {
         this.configuration = configuration;
+        registrationService.loadWorker();
         INSTANCE = this;
     }
     
