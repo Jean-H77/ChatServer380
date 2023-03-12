@@ -1,6 +1,7 @@
 package org.server.service;
 
 import com.sanctionco.jmail.JMail;
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.server.model.RegistrationDetails;
 import org.server.model.request.RegisterRequest;
@@ -36,7 +37,7 @@ public final class RegistrationService {
         requestBlockingQueue.add(rr);
     }
 
-    public void loadWorker() {
+    public void registerWorker() {
         registerExecutorService.submit(new RegistrationWorker());
     }
 
@@ -62,7 +63,7 @@ public final class RegistrationService {
                     if(!(username.length() >= MIN_LENGTH && username.length() <= MAX_LENGTH)) {
                         response |= 1 << INVALID_USERNAME_BIT;
                     }
-                    
+
                     if(!LocalDate.parse(dob, formatter).isBefore(ChronoLocalDate.from(ZonedDateTime.now().minusYears(REQUIRED_AGE)))) {
                         response |= 1 << INVALID_DOB_BIT;
                     }
@@ -75,7 +76,10 @@ public final class RegistrationService {
                         // @todo successful registration work
                     }
 
-                    request.getChannel().writeAndFlush(Unpooled.buffer().setByte(0, RESPONSE_OPCODE).setByte(1, response));
+                    ByteBuf buffer = Unpooled.buffer(2);
+                    buffer.writeByte(RESPONSE_OPCODE);
+                    buffer.writeByte(response);
+                    request.getChannel().writeAndFlush(buffer);
 
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
