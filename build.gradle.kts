@@ -26,6 +26,7 @@ dependencies {
     implementation("commons-codec:commons-codec:1.15")
     // https://mvnrepository.com/artifact/commons-validator/commons-validator
     implementation("commons-validator:commons-validator:1.6")
+    implementation ("com.sanctionco.jmail:jmail:1.4.1")
 }
 
 tasks.getByName<Test>("test") {

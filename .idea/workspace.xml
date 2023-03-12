@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9cb2b725-6e95-4a31-967b-7e1deafe613c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/codec/handlers/ServerChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/handlers/ServerChannelHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/persistance/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/persistance/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/service/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/service/RegistrationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +124,8 @@
       <workItem from="1678421170007" duration="1645000" />
       <workItem from="1678425090353" duration="2112000" />
       <workItem from="1678497948406" duration="7184000" />
-      <workItem from="1678574306655" duration="1974000" />
+      <workItem from="1678574306655" duration="2054000" />
+      <workItem from="1678577813108" duration="1404000" />
     </task>
     <servers />
   </component>
