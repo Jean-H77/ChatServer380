@@ -62,10 +62,8 @@ public final class RegistrationService {
                     if(!(username.length() >= MIN_LENGTH && username.length() <= MAX_LENGTH)) {
                         response |= 1 << INVALID_USERNAME_BIT;
                     }
-
-                    LocalDate date = LocalDate.parse(dob, formatter);
-
-                    if(!date.isBefore(ChronoLocalDate.from(ZonedDateTime.now().minusYears(REQUIRED_AGE)))) {
+                    
+                    if(!LocalDate.parse(dob, formatter).isBefore(ChronoLocalDate.from(ZonedDateTime.now().minusYears(REQUIRED_AGE)))) {
                         response |= 1 << INVALID_DOB_BIT;
                     }
 
