@@ -2,6 +2,7 @@ package org.server.service;
 
 import com.sanctionco.jmail.JMail;
 import io.netty.buffer.Unpooled;
+import org.server.model.RegistrationDetails;
 import org.server.model.request.RegisterRequest;
 import org.server.persistance.Database;
 
@@ -41,11 +42,13 @@ public final class RegistrationService {
             while (true) {
                 try {
                     RegisterRequest request = requestBlockingQueue.take();
+                    RegistrationDetails details = request.getRegistrationDetails();
+                    
+                    String email = details.email();
+                    String username = details.username();
+                    String password = details.password();
+                    String dob = details.dateOfBirth();
 
-                    String email = request.getRegistrationDetails().email();
-                    String username = request.getRegistrationDetails().username();
-                    String password = request.getRegistrationDetails().password();
-                    String dob = request.getRegistrationDetails().dateOfBirth();
                     byte response = 0;
 
                     if(JMail.isInvalid(email) || database.emailExists(email)) {
