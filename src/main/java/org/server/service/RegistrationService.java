@@ -23,6 +23,10 @@ public final class RegistrationService {
     private static final int INVALID_DOB_BIT = 3;
     private static final int INVALID_PASSWORD_BIT = 3;
 
+    private static final int REQUIRED_AGE = 12;
+    private static final int MIN_LENGTH = 5;
+    private static final int MAX_LENGTH = 15;
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     private final ExecutorService registerExecutorService = Executors.newFixedThreadPool(1);
     private final BlockingQueue<RegisterRequest> requestBlockingQueue = new LinkedBlockingQueue<>();
@@ -43,7 +47,7 @@ public final class RegistrationService {
                 try {
                     RegisterRequest request = requestBlockingQueue.take();
                     RegistrationDetails details = request.getRegistrationDetails();
-                    
+
                     String email = details.email();
                     String username = details.username();
                     String password = details.password();
@@ -55,17 +59,17 @@ public final class RegistrationService {
                         response |= 1 << INVALID_EMAIL_BIT;
                     }
 
-                    if(!(username.length() >= 5 && username.length() <= 15)) {
+                    if(!(username.length() >= MIN_LENGTH && username.length() <= MAX_LENGTH)) {
                         response |= 1 << INVALID_USERNAME_BIT;
                     }
 
                     LocalDate date = LocalDate.parse(dob, formatter);
 
-                    if(!date.isBefore(ChronoLocalDate.from(ZonedDateTime.now().minusYears(12)))) {
+                    if(!date.isBefore(ChronoLocalDate.from(ZonedDateTime.now().minusYears(REQUIRED_AGE)))) {
                         response |= 1 << INVALID_DOB_BIT;
                     }
 
-                    if(!(password.length() >= 5 && password.length() <= 15)) { // add password regex pattern (required 1 uppercase, 1 number, 1 special character
+                    if(!(password.length() >= MIN_LENGTH && password.length() <= MAX_LENGTH)) { // add password regex pattern (required 1 uppercase, 1 number, 1 special character
                         response |= 1 << INVALID_PASSWORD_BIT;
                     }
 
