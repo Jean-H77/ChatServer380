@@ -37,10 +37,10 @@ public final class RegistrationService {
     }
 
     public void loadWorker() {
-        registerExecutorService.submit(new LoginWorker());
+        registerExecutorService.submit(new RegistrationWorker());
     }
 
-    class LoginWorker implements Runnable {
+    class RegistrationWorker implements Runnable {
         @Override
         public void run() {
             while (true) {
