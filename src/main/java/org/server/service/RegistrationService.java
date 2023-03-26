@@ -19,10 +19,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 public final class RegistrationService {
 
     private static final int RESPONSE_OPCODE = 10;
-    private static final int INVALID_EMAIL_BIT = 1;
-    private static final int INVALID_USERNAME_BIT = 2;
-    private static final int INVALID_DOB_BIT = 3;
-    private static final int INVALID_PASSWORD_BIT = 3;
+    private static final int INVALID_EMAIL_FLAG = 1;
+    private static final int INVALID_USERNAME_FLAG = 2;
+    private static final int INVALID_DOB_FLAG = 3;
+    private static final int INVALID_PASSWORD_FLAG = 4;
 
     private static final int REQUIRED_AGE = 12;
     private static final int MIN_LENGTH = 5;
@@ -57,19 +57,19 @@ public final class RegistrationService {
                     byte response = 0;
 
                     if(JMail.isInvalid(email) || database.emailExists(email)) {
-                        response |= 1 << INVALID_EMAIL_BIT;
+                        response |= 1 << INVALID_EMAIL_FLAG;
                     }
 
                     if(!(username.length() >= MIN_LENGTH && username.length() <= MAX_LENGTH)) {
-                        response |= 1 << INVALID_USERNAME_BIT;
+                        response |= 1 << INVALID_USERNAME_FLAG;
                     }
 
                     if(!LocalDate.parse(dob, formatter).isBefore(ChronoLocalDate.from(ZonedDateTime.now().minusYears(REQUIRED_AGE)))) {
-                        response |= 1 << INVALID_DOB_BIT;
+                        response |= 1 << INVALID_DOB_FLAG;
                     }
 
                     if(!(password.length() >= MIN_LENGTH && password.length() <= MAX_LENGTH)) { // add password regex pattern (required 1 uppercase, 1 number, 1 special character
-                        response |= 1 << INVALID_PASSWORD_BIT;
+                        response |= 1 << INVALID_PASSWORD_FLAG;
                     }
 
                     if(response == 0) {
