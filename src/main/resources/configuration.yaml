@@ -1,7 +1,7 @@
 # database configuration
-jdbcUrl: okay
-username: root
-password: password
+jdbcUrl: jdbc:mysql://comp380test.mysql.database.azure.com
+username: devuser
+password: Matadors!380
 
 # server configuration
-port: 85
+port: 3306

@@ -42,6 +42,7 @@ public final class RegistrationService {
     }
 
     class RegistrationWorker implements Runnable {
+
         @Override
         public void run() {
             while (true) {
@@ -56,7 +57,7 @@ public final class RegistrationService {
 
                     byte response = 0;
 
-                    if(JMail.isInvalid(email) || database.emailExists(email)) {
+                    if(JMail.isInvalid(email) || database.EmailExists(email)) {
                         response |= 1 << INVALID_EMAIL_FLAG;
                     }
 
@@ -73,7 +74,12 @@ public final class RegistrationService {
                     }
 
                     if(response == 0) {
-                        // @todo successful registration work
+                        boolean result = database.RegisterNewUser (email, username, password, dob);
+
+                        if (!result)
+                        {
+                            System.out.println ("Something went wrong");
+                        }
                     }
 
                     ByteBuf buffer = Unpooled.buffer(2);

@@ -24,6 +24,7 @@ public class Session {
     public void read(Packet packet) {
         int opcode = packet.opcode();
         PacketConstants.PACKET_DECODERS.get(opcode).handleMessage(user, packet);
+        packet.payload().release();
     }
 
     public Channel getChannel() {

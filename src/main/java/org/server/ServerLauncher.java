@@ -1,6 +1,7 @@
 package org.server;
 
 import static org.server.ServerConstants.CONFIGURATION_PATH;
+import org.server.persistance.Database;
 
 public final class ServerLauncher {
 
