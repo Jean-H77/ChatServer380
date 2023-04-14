@@ -5,28 +5,27 @@ import org.server.model.User;
 import org.server.net.packet.InboundPacketHandler;
 import org.server.net.packet.Packet;
 import org.server.net.packet.encoders.GroupMessageEncoder;
-import org.server.utils.MessageUtils;
 
-import java.util.List;
+import java.util.Set;
 
 public final class GroupMessageDecoder implements InboundPacketHandler {
 
     @Override
     public void handleMessage(User user, Packet packet) {
         String message = packet.readString();
-        long groupId = 5; // get users current groupId
-
-        if(MessageUtils.containsProfanity(message)) {
-            return;
-        }
+        String imageLink = user.getProfileImage();
+        String username = user.getUsername();
+        long uuid = user.getUuid();
+        long groupId = user.getCurrentGroupChatId();
 
         Thread.startVirtualThread(() -> {
            // save message to database
         });
 
-        List<User> users = Server.getInstance().getUserListByGroupChatId(groupId);
+        Set<User> users = Server.getInstance().getUsersByGroupChatId(groupId);
         for(User u : users) {
-            u.getSession().send(new GroupMessageEncoder(message, user.getUsername(), groupId, user.getProfileImage()));
+            if(u == null) continue;
+            u.getSession().send(new GroupMessageEncoder(message, username, groupId, imageLink, uuid));
         }
     }
 }

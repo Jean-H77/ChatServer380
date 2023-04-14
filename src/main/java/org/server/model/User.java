@@ -11,6 +11,7 @@ public class User {
     private final UserDetails userDetails;
     private final long uuid;
     private final Set<Long> groupChatIds = new HashSet<>();
+    private long currentGroupChat;
 
     public User(Session session, String username, String profileImage, UserDetails userDetails, long uuid) {
         this.session = session;
@@ -46,5 +47,9 @@ public class User {
 
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+    public long getCurrentGroupChatId() {
+        return currentGroupChat;
     }
 }

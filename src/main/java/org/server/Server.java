@@ -12,6 +12,7 @@ import org.server.service.LoginService;
 import org.server.service.RegistrationService;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Server {
 
@@ -40,9 +41,7 @@ public class Server {
                     .childHandler(new ChannelInit())
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
-                    .childOption(ChannelOption.TCP_NODELAY, true)
-                    .childOption(ChannelOption.SO_RCVBUF, Short.MAX_VALUE*2)
-                    .childOption(ChannelOption.SO_SNDBUF, Short.MAX_VALUE*2);
+                    .childOption(ChannelOption.TCP_NODELAY, true);
 
             ChannelFuture future = bootstrap.bind(configuration.getPort()).sync();
             future.channel().closeFuture().sync();
@@ -67,11 +66,11 @@ public class Server {
         return connectedUsers.remove(user);
     }
 
-    public List<User> getUserListByGroupChatId(long id) {
+    public Set<User> getUsersByGroupChatId(long id) {
         return connectedUsers
                 .stream()
                 .filter(user -> user.getGroupChatIds().contains(id))
-                .toList();
+                .collect(Collectors.toSet());
     }
 
     public Optional<User> getUserByUuid(long id) {
@@ -79,6 +78,10 @@ public class Server {
                 .stream()
                 .filter(user -> user.getUuid() == id)
                 .findFirst();
+    }
+
+    public Set<User> getAllConnectedUsers() {
+        return connectedUsers;
     }
 
     public static Server getInstance() {

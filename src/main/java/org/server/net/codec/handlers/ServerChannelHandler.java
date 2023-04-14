@@ -1,11 +1,13 @@
 package org.server.net.codec.handlers;
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.AttributeKey;
 import io.netty.util.ReferenceCountUtil;
 import org.server.Server;
 import org.server.model.Session;
+import org.server.model.User;
 import org.server.model.request.LoginRequest;
 import org.server.model.request.RegisterRequest;
 import org.server.net.packet.Packet;
@@ -15,7 +17,7 @@ import java.io.IOException;
 public class ServerChannelHandler extends ChannelInboundHandlerAdapter {
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+    public void channelRead(ChannelHandlerContext ctx, Object msg) {
         Session session = (Session)ctx.channel().attr(AttributeKey.valueOf("session.key")).get();
 
         if(session == null) {
@@ -45,6 +47,15 @@ public class ServerChannelHandler extends ChannelInboundHandlerAdapter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+        Session session = (Session)ctx.channel().attr(AttributeKey.valueOf("session.key")).get();
+        int size = Server.getInstance().getAllConnectedUsers().size();
+        User user = new User(session, "Test"+size, "null", null, 563636);
+        session.setUser(user);
+        Server.getInstance().addNewUser(user);
     }
 
     @Override
