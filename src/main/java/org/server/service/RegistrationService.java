@@ -77,20 +77,17 @@ public final class RegistrationService {
                         response |= 1 << INVALID_PASSWORD_FLAG;
                     }
 
-                    byte finalResponse = response;
-                    Thread.startVirtualThread(() -> {
-                        if(finalResponse == 0) {
-                            boolean result = database.registerNewUser(email, username, password, details.profileImage(), dob);
-                            if (!result) {
-                                LOGGER.error("Error creating new user in database");
-                                return;
-                            }
-                            ByteBuf buffer = Unpooled.buffer(2);
-                            buffer.writeByte(RESPONSE_OPCODE);
-                            buffer.writeByte(finalResponse);
-                            request.getChannel().writeAndFlush(buffer);
+                    if(response == 0) {
+                        if (!database.registerNewUser(email, username, password, details.profileImage(), dob)) {
+                            LOGGER.error("Error creating new user in database");
+                            return;
                         }
-                    });
+                    }
+
+                    ByteBuf buffer = Unpooled.buffer(2);
+                    buffer.writeByte(RESPONSE_OPCODE);
+                    buffer.writeByte(response);
+                    request.getChannel().writeAndFlush(buffer);
 
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
