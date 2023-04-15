@@ -15,11 +15,11 @@ public class LoginService {
 
         UserDetails userDetails = lrr.getUserDetails();
 
-        if (database.EmailExists (userDetails.email())) //verify if the user exists at all first before importing the information
+        if (database.emailExists(userDetails.email())) //verify if the user exists at all first before importing the information
         {
-            long uuid = database.GetUUID (userDetails.email());
+            long uuid = database.getUUID(userDetails.email());
             String username = database.GetUsername (uuid);
-            String image = database.GetImage (uuid);
+            String image = database.getImage(uuid);
             User user = new User(new Session(channel), username, image, userDetails, uuid);
             finalizeLogin(user, channel);
         }
