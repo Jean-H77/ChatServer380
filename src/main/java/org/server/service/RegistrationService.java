@@ -6,6 +6,8 @@ import io.netty.buffer.Unpooled;
 import org.server.model.RegistrationDetails;
 import org.server.model.request.RegisterRequest;
 import org.server.persistance.Database;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -17,6 +19,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public final class RegistrationService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationService.class);
 
     private static final int RESPONSE_OPCODE = 10;
     private static final int INVALID_EMAIL_FLAG = 1;
@@ -32,11 +36,9 @@ public final class RegistrationService {
     private final ExecutorService registerExecutorService = Executors.newFixedThreadPool(1);
     private final BlockingQueue<RegisterRequest> requestBlockingQueue = new LinkedBlockingQueue<>();
     private final Database database = new Database();
-
     public void addRequest(RegisterRequest rr) {
         requestBlockingQueue.add(rr);
     }
-
     public void registerWorker() {
         registerExecutorService.submit(new RegistrationWorker());
     }
@@ -57,7 +59,7 @@ public final class RegistrationService {
 
                     byte response = 0;
 
-                    if(JMail.isInvalid(email) || database.EmailExists(email)) {
+                    if(JMail.isInvalid(email) || database.emailExists(email)) {
                         response |= 1 << INVALID_EMAIL_FLAG;
                     }
 
@@ -74,11 +76,9 @@ public final class RegistrationService {
                     }
 
                     if(response == 0) {
-                        boolean result = database.RegisterNewUser (email, username, password, dob);
-
-                        if (!result)
-                        {
-                            System.out.println ("Something went wrong");
+                        if (!database.registerNewUser(email, username, password, details.profileImage(), dob)) {
+                            LOGGER.error("Error creating new user in database");
+                            return;
                         }
                     }
 

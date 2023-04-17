@@ -7,21 +7,23 @@ import org.server.model.User;
 import org.server.model.UserDetails;
 import org.server.net.codec.decoders.PacketDecoder;
 import org.server.net.codec.encoders.PacketEncoder;
-import org.server.persistance.Database; //test
+import org.server.persistance.Database;
 public class LoginService {
-    private final Database database = new Database(); //test
+    private final Database database = new Database();
     public void validateLogin(LoginRequest lrr) {
         Channel channel = lrr.getChannel();
 
         UserDetails userDetails = lrr.getUserDetails();
 
-        if (database.EmailExists (userDetails.email())) //verify if the user exists at all first before importing the information
-        {
-            long uuid = database.GetUUID (userDetails.email());
-            String username = database.GetUsername (uuid);
-            String image = database.GetImage (uuid);
+        if (database.emailExists(userDetails.email())) {
+            long uuid = database.getUUID(userDetails.email()); //i'm guessing this has to be rewritten
+            String username = database.getUsername(uuid);
+            String image = database.getImage(uuid);
             User user = new User(new Session(channel), username, image, userDetails, uuid);
-            finalizeLogin(user, channel);
+
+            if (userDetails.password().equals(database.getPassword(uuid))) {
+                finalizeLogin(user, channel);
+            }
         }
     }
 

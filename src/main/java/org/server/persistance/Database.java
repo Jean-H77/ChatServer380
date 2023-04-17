@@ -1,147 +1,102 @@
 package org.server.persistance;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Objects;
+import java.sql.*;
+import java.util.UUID;
+
+import static org.server.persistance.QueryConstants.ADD_NEW_USER_TO_DATABASE;
+import static org.server.persistance.QueryConstants.CHECK_EMAIL_EXISTS;
+import static org.server.persistance.QueryConstants.GET_PASS;
+import static org.server.persistance.QueryConstants.DECRYPT_PASS;
 
 public class Database {
-    public boolean RegisterNewUser (String email, String username, String password, String dateOfBirth)
-    {
-        String addUserStr = QueryConstants.ADD_NEW_USER_TO_DATABASE + "VALUES + ('" + username + "', '" + password + "', '" + email + " ', '" + dateOfBirth + "')";
 
+    public boolean registerNewUser(String email, String username, String password, String profileImage, String dateOfBirth) {
         try (Connection conn = Datasource.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(addUserStr))
-        {
-            //stmt.executeUpdate();
+             PreparedStatement stmt = conn.prepareStatement(ADD_NEW_USER_TO_DATABASE)) {
+            conn.setAutoCommit(false);
+            long uuid = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE; //competes with PID? or is this supposed to be SHA1
+            stmt.setString(1, String.valueOf(uuid));
+            stmt.setString(2, username);
+            stmt.setString(3, "sha1('" + password + "')");
+            stmt.setString(4, email);
+            stmt.setString(5, profileImage);
+            stmt.setString(6, dateOfBirth);
+            stmt.executeUpdate();
             conn.commit();
-            return true;
         }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    public boolean EmailExists (String email)
-    {
-        String emailCheckStr = QueryConstants.CHECK_EMAIL_EXISTS + email + "')";
-
-        try (Connection conn = Datasource.getConnection();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs =  stmt.executeQuery(emailCheckStr))
-        {
-            if (rs.next())
-            {
-                if (Objects.equals(email, rs.getString("email")))
-                    return true;
-            }
-        }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
 
-    public String GetImage (long id)
-    {
-        String imageGetStr = QueryConstants.GET_IMAGE + id + "')";
+    public boolean emailExists(String email) {
+        try (Connection conn = Datasource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(CHECK_EMAIL_EXISTS)) {
+            stmt.setString(1, email);
+            return stmt.executeQuery().isBeforeFirst();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
+    public String getPassword(long id){
+        try (Connection conn = Datasource.getConnection();
+             PreparedStatement stmt  = conn.prepareStatement(GET_PASS);
+             PreparedStatement decrypt = conn.prepareStatement(DECRYPT_PASS)) {
+            stmt.setString(1, String.valueOf(id));
+            decrypt.setString(1, String.valueOf(stmt.executeQuery()));
+            return String.valueOf(stmt.executeQuery().isBeforeFirst());
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public String getImage(long id) {
+        String imageGetStr = QueryConstants.GET_IMAGE + id + "')";
         try (Connection conn = Datasource.getConnection();
              Statement stmt  = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(imageGetStr))
-        {
-            if (rs.next())
-            {
+             ResultSet rs = stmt.executeQuery(imageGetStr)) {
+            if (rs.next()) {
                 return rs.getString("profileImage");
             }
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 
-    public long GetUUID (String email)
-    {
+    public long getUUID(String email) {
         String emailGetStr = QueryConstants.GET_UUID + email + "')";
-
         try (Connection conn = Datasource.getConnection();
              Statement stmt  = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(emailGetStr))
-        {
-            if (rs.next())
-            {
-                return Long.parseLong(rs.getString("id"));
+             ResultSet rs = stmt.executeQuery(emailGetStr)) {
+            if (rs.next()) {
+                return Long.parseLong(rs.getString("uuid"));
             }
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             e.printStackTrace();
         }
         return -1; //no ID found
     }
-    public String GetUsername (long id)
-    {
-        String getUsrNameStr = QueryConstants.GET_USER_NAME + id + "')";
 
+    public String getUsername(long id) {
+        String getUsrNameStr = QueryConstants.GET_USER_NAME + id + "')";
         try (Connection conn = Datasource.getConnection();
              Statement stmt  = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(getUsrNameStr))
-        {
-            if (rs.next())
-            {
+             ResultSet rs = stmt.executeQuery(getUsrNameStr)) {
+            if (rs.next()) {
                 return rs.getString("username");
             }
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             e.printStackTrace();
         }
-        return ""; //is this unsafe to do so?
+        return null;
     }
-    /*
-    public static boolean printAllUserIDs() //for debug
-    {
-        try (Connection conn = Datasource.getConnection();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(QueryConstants.GET_ID_ALL_USERS))
-        {
-            while (rs.next())
-            {
-                System.out.println(rs.getString("id"));
-            }
-            System.out.print("test\n");
-            System.out.println (stmt);
-            return true;
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return false;
-    }
-    public int GetNewestUserID() //for debug
-    {
-        try (Connection conn = Datasource.getConnection();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(QueryConstants.GET_NEWEST_USER_ID))
-        {
-            if (rs.next())
-            {
-                return rs.getInt(1);
-            }
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-     */
 }
