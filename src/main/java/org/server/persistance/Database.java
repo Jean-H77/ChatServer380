@@ -1,12 +1,12 @@
 package org.server.persistance;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.sql.*;
 import java.util.UUID;
 
 import static org.server.persistance.QueryConstants.ADD_NEW_USER_TO_DATABASE;
 import static org.server.persistance.QueryConstants.CHECK_EMAIL_EXISTS;
 import static org.server.persistance.QueryConstants.GET_PASS;
-import static org.server.persistance.QueryConstants.DECRYPT_PASS;
 
 public class Database {
 
@@ -14,13 +14,15 @@ public class Database {
         try (Connection conn = Datasource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(ADD_NEW_USER_TO_DATABASE)) {
             conn.setAutoCommit(false);
-            long uuid = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE; //competes with PID? or is this supposed to be SHA1
+
+            long uuid = Math.abs(UUID.randomUUID().getLeastSignificantBits());
             stmt.setString(1, String.valueOf(uuid));
             stmt.setString(2, username);
-            stmt.setString(3, "sha1('" + password + "')");
+            stmt.setString(3, BCrypt.withDefaults().hashToString(8, password.toCharArray()));
             stmt.setString(4, email);
             stmt.setString(5, profileImage);
             stmt.setString(6, dateOfBirth);
+
             stmt.executeUpdate();
             conn.commit();
         }
@@ -44,10 +46,8 @@ public class Database {
 
     public String getPassword(long id){
         try (Connection conn = Datasource.getConnection();
-             PreparedStatement stmt  = conn.prepareStatement(GET_PASS);
-             PreparedStatement decrypt = conn.prepareStatement(DECRYPT_PASS)) {
+             PreparedStatement stmt  = conn.prepareStatement(GET_PASS)) {
             stmt.setString(1, String.valueOf(id));
-            decrypt.setString(1, String.valueOf(stmt.executeQuery()));
             return String.valueOf(stmt.executeQuery().isBeforeFirst());
         }
         catch (SQLException e) {

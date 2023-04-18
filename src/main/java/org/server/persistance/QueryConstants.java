@@ -18,10 +18,6 @@ public final class QueryConstants {
     public static String GET_PASS = "SELECT pass FROM chatapp.users WHERE id = ?";
 
     /**
-     * Decrypyt the incoming SHA1 pass
-     */
-    public static String DECRYPT_PASS = "SELECT SHA1(UNHEX(SHA1(?)))";
-    /**
      * Retrieves username by comparing UUID
      */
     public static String GET_USER_NAME = "SELECT username FROM chatapp.users WHERE id =";
@@ -35,11 +31,6 @@ public final class QueryConstants {
      * Retrieves the users imgur link of their profile image
      */
     public static String GET_IMAGE = "SELECT profileImage FROM chatapp.users WHERE id =";
-
-
-    //public static String GET_NEWEST_USER_ID = "SELECT last_insert_id() FROM `chatapp`.`users`";
-    //public static String GET_ID_ALL_USERS = "SELECT id FROM `chatapp`.`users`";
-    //public static String TEST_QUERY = "SELECT * FROM TABLE_NAME";
 
     //private constructor to avoid instantiation
     private QueryConstants() {

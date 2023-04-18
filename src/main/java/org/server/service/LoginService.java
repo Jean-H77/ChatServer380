@@ -1,6 +1,7 @@
 package org.server.service;
 
 import io.netty.channel.Channel;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.server.model.request.LoginRequest;
 import org.server.model.Session;
 import org.server.model.User;
@@ -16,12 +17,13 @@ public class LoginService {
         UserDetails userDetails = lrr.getUserDetails();
 
         if (database.emailExists(userDetails.email())) {
-            long uuid = database.getUUID(userDetails.email()); //i'm guessing this has to be rewritten
+            long uuid = database.getUUID(userDetails.email());
             String username = database.getUsername(uuid);
             String image = database.getImage(uuid);
             User user = new User(new Session(channel), username, image, userDetails, uuid);
 
-            if (userDetails.password().equals(database.getPassword(uuid))) {
+            BCrypt.Result result = BCrypt.verifyer().verify(userDetails.password().toCharArray(), database.getPassword(uuid));
+            if (result.verified) {
                 finalizeLogin(user, channel);
             }
         }
