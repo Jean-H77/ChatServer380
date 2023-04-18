@@ -15,22 +15,22 @@ public final class QueryConstants {
     /**
      * Retrieves passwords from database by comparing UUID
      */
-    public static String GET_PASS = "SELECT pass FROM chatapp.users WHERE id = ?";
+    public static String GET_PASS = "SELECT pass FROM chatapp.users WHERE uuid = ";
 
     /**
      * Retrieves username by comparing UUID
      */
-    public static String GET_USER_NAME = "SELECT username FROM chatapp.users WHERE id =";
+    public static String GET_USER_NAME = "SELECT username FROM chatapp.users WHERE uuid =";
 
     /**
      * Retrieves UUID by comparing email of the input
      */
-    public static String GET_UUID = "SELECT id FROM chatapp.users WHERE email =";
+    public static String GET_UUID = "SELECT id FROM chatapp.users WHERE email = '";
 
     /**
      * Retrieves the users imgur link of their profile image
      */
-    public static String GET_IMAGE = "SELECT profileImage FROM chatapp.users WHERE id =";
+    public static String GET_IMAGE = "SELECT profileImage FROM chatapp.users WHERE uuid = ";
 
     //private constructor to avoid instantiation
     private QueryConstants() {

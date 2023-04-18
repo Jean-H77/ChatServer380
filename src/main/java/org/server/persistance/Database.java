@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import static org.server.persistance.QueryConstants.ADD_NEW_USER_TO_DATABASE;
 import static org.server.persistance.QueryConstants.CHECK_EMAIL_EXISTS;
-import static org.server.persistance.QueryConstants.GET_PASS;
 
 public class Database {
 
@@ -25,6 +24,10 @@ public class Database {
 
             stmt.executeUpdate();
             conn.commit();
+            BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), getPassword(uuid).toCharArray());
+            System.out.println (password.toCharArray());
+            System.out.println (getPassword(uuid));
+            System.out.println (result.verified);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -44,19 +47,23 @@ public class Database {
         return false;
     }
 
-    public String getPassword(long id){
+    public String getPassword(long id) {
+        String passGetStr = QueryConstants.GET_PASS + id;
         try (Connection conn = Datasource.getConnection();
-             PreparedStatement stmt  = conn.prepareStatement(GET_PASS)) {
-            stmt.setString(1, String.valueOf(id));
-            return String.valueOf(stmt.executeQuery().isBeforeFirst());
+             Statement stmt  = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(passGetStr)) {
+            if (rs.next()) {
+                return rs.getString("pass");
+            }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
     public String getImage(long id) {
-        String imageGetStr = QueryConstants.GET_IMAGE + id + "')";
+        String imageGetStr = QueryConstants.GET_IMAGE + id;
         try (Connection conn = Datasource.getConnection();
              Statement stmt  = conn.createStatement();
              ResultSet rs = stmt.executeQuery(imageGetStr)) {
@@ -86,7 +93,7 @@ public class Database {
     }
 
     public String getUsername(long id) {
-        String getUsrNameStr = QueryConstants.GET_USER_NAME + id + "')";
+        String getUsrNameStr = QueryConstants.GET_USER_NAME + id;
         try (Connection conn = Datasource.getConnection();
              Statement stmt  = conn.createStatement();
              ResultSet rs = stmt.executeQuery(getUsrNameStr)) {
