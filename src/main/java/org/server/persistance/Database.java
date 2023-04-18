@@ -24,10 +24,6 @@ public class Database {
 
             stmt.executeUpdate();
             conn.commit();
-            BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), getPassword(uuid).toCharArray());
-            System.out.println (password.toCharArray());
-            System.out.println (getPassword(uuid));
-            System.out.println (result.verified);
         }
         catch (SQLException e) {
             e.printStackTrace();
