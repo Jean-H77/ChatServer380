@@ -24,6 +24,13 @@ public class Database {
 
             stmt.executeUpdate();
             conn.commit();
+<<<<<<< Updated upstream
+=======
+            BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), getPassword(uuid).toCharArray());
+            System.out.println (password.toCharArray());
+            System.out.println (getPassword(uuid));
+            System.out.println (result.verified);
+>>>>>>> Stashed changes
         }
         catch (SQLException e) {
             e.printStackTrace();
