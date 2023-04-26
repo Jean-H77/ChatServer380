@@ -7,13 +7,12 @@
     <list default="true" id="9cb2b725-6e95-4a31-967b-7e1deafe613c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/codec/handlers/ServerChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/codec/handlers/ServerChannelHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/OutboundPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/OutboundPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/GroupMessageDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/decoders/GroupMessageDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/GroupMessageEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/net/packet/encoders/GroupMessageEncoder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/persistance/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/persistance/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/persistance/QueryConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/persistance/QueryConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/service/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/service/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/service/RegistrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/configuration.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/configuration.yaml" afterDir="false" />
     </list>
     <list default="true" id="9cb2b725-6e95-4a31-967b-7e1deafe613c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,24 +63,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ServerLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.server.ServerLauncher" />
@@ -148,6 +147,7 @@
       <workItem from="1681074844917" duration="364000" />
       <workItem from="1681427871515" duration="47000" />
       <workItem from="1681427927728" duration="8883000" />
+      <workItem from="1681523733365" duration="4037000" />
     </task>
     <servers />
   </component>
