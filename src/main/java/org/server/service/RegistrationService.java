@@ -36,11 +36,9 @@ public final class RegistrationService {
     private final ExecutorService registerExecutorService = Executors.newFixedThreadPool(1);
     private final BlockingQueue<RegisterRequest> requestBlockingQueue = new LinkedBlockingQueue<>();
     private final Database database = new Database();
-
     public void addRequest(RegisterRequest rr) {
         requestBlockingQueue.add(rr);
     }
-
     public void registerWorker() {
         registerExecutorService.submit(new RegistrationWorker());
     }

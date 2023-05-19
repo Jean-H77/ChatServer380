@@ -1,6 +1,8 @@
 package org.server.persistance;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.sql.*;
+import java.util.UUID;
 
 import static org.server.persistance.QueryConstants.ADD_NEW_USER_TO_DATABASE;
 import static org.server.persistance.QueryConstants.CHECK_EMAIL_EXISTS;
@@ -10,12 +12,18 @@ public class Database {
     public boolean registerNewUser(String email, String username, String password, String profileImage, String dateOfBirth) {
         try (Connection conn = Datasource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(ADD_NEW_USER_TO_DATABASE)) {
-            stmt.setString(1, username);
-            stmt.setString(2, password);
-            stmt.setString(3, email);
-            stmt.setString(4, profileImage);
-            stmt.setString(5, dateOfBirth);
-            return stmt.executeUpdate() > 0;
+            conn.setAutoCommit(false);
+
+            long uuid = Math.abs(UUID.randomUUID().getLeastSignificantBits());
+            stmt.setString(1, String.valueOf(uuid));
+            stmt.setString(2, username);
+            stmt.setString(3, BCrypt.withDefaults().hashToString(8, password.toCharArray()));
+            stmt.setString(4, email);
+            stmt.setString(5, profileImage);
+            stmt.setString(6, dateOfBirth);
+
+            stmt.executeUpdate();
+            conn.commit();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -35,8 +43,23 @@ public class Database {
         return false;
     }
 
+    public String getPassword(long id) {
+        String passGetStr = QueryConstants.GET_PASS + id;
+        try (Connection conn = Datasource.getConnection();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(passGetStr)) {
+            if (rs.next()) {
+                return rs.getString("pass");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public String getImage(long id) {
-        String imageGetStr = QueryConstants.GET_IMAGE + id + "')";
+        String imageGetStr = QueryConstants.GET_IMAGE + id;
         try (Connection conn = Datasource.getConnection();
              Statement stmt  = conn.createStatement();
              ResultSet rs = stmt.executeQuery(imageGetStr)) {
@@ -56,7 +79,7 @@ public class Database {
              Statement stmt  = conn.createStatement();
              ResultSet rs = stmt.executeQuery(emailGetStr)) {
             if (rs.next()) {
-                return Long.parseLong(rs.getString("id"));
+                return Long.parseLong(rs.getString("uuid"));
             }
         }
         catch (SQLException e) {
@@ -65,8 +88,8 @@ public class Database {
         return -1; //no ID found
     }
 
-    public String GetUsername(long id) {
-        String getUsrNameStr = QueryConstants.GET_USER_NAME + id + "')";
+    public String getUsername(long id) {
+        String getUsrNameStr = QueryConstants.GET_USER_NAME + id;
         try (Connection conn = Datasource.getConnection();
              Statement stmt  = conn.createStatement();
              ResultSet rs = stmt.executeQuery(getUsrNameStr)) {
@@ -79,44 +102,4 @@ public class Database {
         }
         return null;
     }
-
-    /*
-    public static boolean printAllUserIDs() //for debug
-    {
-        try (Connection conn = Datasource.getConnection();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(QueryConstants.GET_ID_ALL_USERS))
-        {
-            while (rs.next())
-            {
-                System.out.println(rs.getString("id"));
-            }
-            System.out.print("test\n");
-            System.out.println (stmt);
-            return true;
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return false;
-    }
-    public int GetNewestUserID() //for debug
-    {
-        try (Connection conn = Datasource.getConnection();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(QueryConstants.GET_NEWEST_USER_ID))
-        {
-            if (rs.next())
-            {
-                return rs.getInt(1);
-            }
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-     */
 }
